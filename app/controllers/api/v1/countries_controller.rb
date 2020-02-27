@@ -12,13 +12,7 @@ class Api::V1::CountriesController < ApplicationController
     @country = Country.find(params[:id])
 
     render jsonapi: @country,
-      include: [:cities, from_ways: [:city_from, :city_to]],
-      fields:
-        {
-          countries: [:name],
-          cities: [:name],
-          ways: [:distance, :city_from, :city_to]
-        }
+      include: [:cities, from_ways: [:city_from, :city_to]]
   end
 
 end
