@@ -19,12 +19,12 @@ class Api::V1::CountriesController < ApplicationController
   end
 
   def result
-    @country = Country.find(params[:country_id])
+    @country = Country.find(params["_jsonapi"]["data"]["attributes"]["country_id"])
     @cities = @country.cities
     @ways = @country.from_ways
 
-    @start_city_name = @cities.find(params[:city_from]).name
-    @end_city_name = @cities.find(params[:city_to]).name
+    @start_city_name = @cities.find(params["_jsonapi"]["data"]["attributes"]["start_city"]).name
+    @end_city_name = @cities.find(params["_jsonapi"]["data"]["attributes"]["end_city"]).name
 
     @gr = Graph.new
     @ways.each do |w|
