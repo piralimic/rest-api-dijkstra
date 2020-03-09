@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :countries do
-        resources :cities
-        resources :ways
-      end
+      resources :countries, only: [:index, :show]
       post '/results' => 'countries#result'
     end
   end
